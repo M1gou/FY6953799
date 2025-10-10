@@ -73,6 +73,29 @@
 
   <a href="https://www.ifs.com/ai/industrial-ai/aerospace-and-defense?utm_campaign=2020-SE50-1087-XIN-BRD-2025-500&utm_medium=paid_search&utm_source=1009_-_google.com&utm_content=ai_in_aerospace&gad_source=1&gad_campaignid=22490982846&gclid=EAIaIQobChMIx7DO3vaWkAMVNY1QBh1Uzyh4EAAYAiAAEgKwa_D_BwE">link text</a>
 
+
+<head>
+<title>Change button colour</title>
+</head>
+  <body>
+    <button id="colorButton">Click me to change colour</button>
+
+<script>
+  // Get a reference to the button eleement
+  var button= document.getElementById("colorButton");
+
+  // Function to change the button color
+  function changeColor() {
+// Generate a random color (hexadecimal)
+var randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+// Set the button's background color to the random color
+button.style.backgroundColor = randomColor;
+  }
+
+ // Add a click event listener to the button
+button.addEventListener("click", changeColor);
+</script>
+  </body>  
 </html>
 
 
