@@ -122,6 +122,80 @@ button.style.backgroundColor = randomColor;
 button.addEventListener("click", changeColor);
 </script>
 </body>
+<head>
+  <title>My Daily Activities</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+ 
+<body>
+  <div id="chart_div" style="width: 600px; height: 400px;"></div>
+
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Work', 8],
+        ['Sleep', 8],
+        ['Eat', 2],
+        ['Study', 4],
+        ['Exercise', 2]
+      ]);
+
+      var options = {
+        title: 'My Daily Activities'
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+  </script>
+</body> 
+ 
+<head>
+  <title>Age vs. Salary</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', { 'packages': ['corechart'] });
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Callback that creates and populates a data table,
+    // instantiates the scatter chart, passes in the data and draws it.
+    function drawChart() {
+      var data = new google.visualization.DataTable();
+
+      data.addColumn('number', 'Age');
+      data.addColumn('number', 'Salary');
+      data.addRows([
+        [25, 40000],
+        [30, 50000],
+        [35, 60000],
+        [40, 75000],
+        [45, 80000],
+        [50, 90000]
+      ]);
+
+      var options = {
+        title: 'Age vs. Salary',
+        hAxis: { title: 'Age' },
+        vAxis: { title: 'Salary' },
+        legend: 'none',
+        pointSize: 5
+      };
+
+      var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <div id="chart_div" style="width: 700px; height: 500px;"></div>
+</body>
 </html>
 
 
