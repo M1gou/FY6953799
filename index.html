@@ -196,6 +196,146 @@ button.addEventListener("click", changeColor);
 <body>
   <div id="chart_div" style="width: 700px; height: 500px;"></div>
 </body>
+<div id="last-updated">Loading last update time...</div>
+
+<!-- Verify button -->
+<button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+    Verify Last Modified Time
+</button>
+
+<script>
+    async function getLastUpdatedTime() {
+        const username = 'M1gou';
+        const repo = 'FY6953799';
+        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+
+        try {
+            const response = await fetch(url, {
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error fetching data: ${response.status} ${response.statusText}`);
+            }
+
+            const commits = await response.json();
+            const latestCommit = commits[0];
+            const lastCommitDate = new Date(latestCommit.commit.committer.date);
+
+            // Displaying the time on load
+            document.getElementById('last-updated').innerText =
+                `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+
+        } catch (error) {
+            console.error('Error fetching the last update time:', error);
+            document.getElementById('last-updated').innerText =
+                'Error fetching update time. Please check the repository details.';
+        }
+    }
+
+    // Function to verify the last update time by re-fetching it from the API
+    async function verifyLastUpdatedTime() {
+        document.getElementById('last-updated').innerText = 'Verifying...';
+        await getLastUpdatedTime();
+        alert('Last modified time has been successfully verified from GITHUB API.');
+    }
+
+    // Initial load to display the time on page load
+    window.onload = getLastUpdatedTime;
+</script>
+
+ <p id="totalWordcount"></p>
+
+<script>
+// Function to calculate and display word count for a specified section
+function displayWordCount(sectionId, output) {
+    // Get the text content from the specified section
+    const text = document.getElementById(sectionId).textContent;
+
+    // Split text into words based on spaces and filter out any empty strings
+    const wordArray = text.trim().split(/\s+/);
+
+    // Count the words
+    const wordCount = wordArray.length;
+
+    // Return the word count for summing purposes
+    return wordCount;
+}
+
+// Function to calculate and display total word count from selected sections
+function displayTotalWordcount() {
+    // Calculate word count for each section and accumulate the total
+    const introductionCount = displayWordCount("Introduction_InText");
+    const analysisCount = displayWordCount("Analysis_InText");
+
+    // Calculate the sum of all selected sections
+    const totalWordCount = introductionCount + analysisCount;
+
+    // Display the total word count
+    document.getElementById("totalWordcount").innerText =
+        "Total word count: " + totalWordCount;
+}
+
+// Run the function for specific sections and display total count when the page loads
+window.onload = displayTotalWordcount;
+</script>
+
+ <!-- ============================= -->
+<!--   ENG0018 Lab H3 - JavaScript -->
+<!-- ============================= -->
+
+<h3 id="Introduction">Introduction</h3>
+<p id="Introduction_InText">
+Active learning (Angluin, 1988; Cohn et al., 1994) is a paradigm where a concept is learnt by an interactive learning algorithm. ...
+</p>
+
+<h3 id="Analysis_and_discussion">Analysis and Discussion</h3>
+<p id="Analysis_InText">
+Bridge deck repair durability is the subject of much recent research such as in ...
+</p>
+
+<!-- Placeholder for total word count -->
+<p id="totalWordcount"></p>
+
+<script>
+// =============================
+// Function to calculate and display word count for a specified section
+// =============================
+function displayWordCount(sectionId) {
+    // Get the text content from the specified section
+    const text = document.getElementById(sectionId).textContent;
+
+    // Split text into words based on spaces and filter out any empty strings
+    const wordArray = text.trim().split(/\s+/);
+
+    // Count the words
+    const wordCount = wordArray.length;
+
+    // Return the word count for summing purposes
+    return wordCount;
+}
+
+// =============================
+// Function to calculate and display total word count from selected sections
+// =============================
+function displayTotalWordcount() {
+    // Calculate word count for each section and accumulate the total
+    const introductionCount = displayWordCount("Introduction_InText"); // Replace with your section ID like introduction paragraph 1 or inevstigation on Ai, etc....
+    const analysisCount = displayWordCount("Analysis_InText");         // Replace with your section ID
+
+    // Calculate the sum of all selected sections
+    const totalWordCount = introductionCount + analysisCount;
+
+    // Display the total word count
+    document.getElementById("totalWordcount").innerText =
+        "Total word count: " + totalWordCount;
+}
+
+// Run the function for specific sections and display total count when the page loads
+window.onload = displayTotalWordcount;
+</script>
 </html>
 
 
