@@ -282,10 +282,6 @@ function displayTotalWordcount() {
 window.onload = displayTotalWordcount;
 </script>
 
- <!-- ============================= -->
-<!--   ENG0018 Lab H3 - JavaScript -->
-<!-- ============================= -->
-
 <h3 id="Introduction">Introduction</h3>
 <p id="Introduction_InText">
 Active learning (Angluin, 1988; Cohn et al., 1994) is a paradigm where a concept is learnt by an interactive learning algorithm. ...
@@ -300,9 +296,7 @@ Bridge deck repair durability is the subject of much recent research such as in 
 <p id="totalWordcount"></p>
 
 <script>
-// =============================
-// Function to calculate and display word count for a specified section
-// =============================
+
 function displayWordCount(sectionId) {
     // Get the text content from the specified section
     const text = document.getElementById(sectionId).textContent;
@@ -317,9 +311,7 @@ function displayWordCount(sectionId) {
     return wordCount;
 }
 
-// =============================
-// Function to calculate and display total word count from selected sections
-// =============================
+
 function displayTotalWordcount() {
     // Calculate word count for each section and accumulate the total
     const introductionCount = displayWordCount("Introduction_InText"); // Replace with your section ID like introduction paragraph 1 or inevstigation on Ai, etc....
