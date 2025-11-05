@@ -59,20 +59,37 @@
       margin: 30px auto;
     }
 
+    #line_chart_div {
+      width: 900px;
+      height: 500px;
+      margin: 30px auto;
+    }
+
     #last-updated, button {
       text-align: center;
       display: block;
       margin: 10px auto;
+    }
+
+    p {
+      width: 80%;
+      margin: 10px auto;
+      line-height: 1.6;
     }
   </style>
 
   <!-- Google Charts -->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(drawAllCharts);
 
-    function drawChart() {
+    function drawAllCharts() {
+      drawPieChart();
+      drawLineChart();
+    }
+
+    function drawPieChart() {
       var data = google.visualization.arrayToDataTable([
         ['Category', 'Number of Studies'],
         ['Artificial Intelligence (AI)', 66],
@@ -87,6 +104,28 @@
       };
 
       var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+
+    function drawLineChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Year', 'Articles'],
+        ['2004', 1], ['2005', 0], ['2006', 1], ['2007', 0], ['2008', 0],
+        ['2009', 1], ['2010', 2], ['2011', 2], ['2012', 1], ['2013', 1],
+        ['2014', 0], ['2015', 3], ['2016', 7], ['2017', 4], ['2018', 6],
+        ['2019', 15], ['2020', 13], ['2021', 32], ['2022', 58], ['2023', 68],
+        ['2024 (Jan)', 8]
+      ]);
+
+      var options = {
+        title: 'Annual Scientific Production in Aviation Safety Research',
+        curveType: 'function',
+        legend: { position: 'bottom' },
+        hAxis: { title: 'Year' },
+        vAxis: { title: 'Number of Articles' }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('line_chart_div'));
       chart.draw(data, options);
     }
   </script>
@@ -116,7 +155,7 @@
     </tbody>
   </table>
 
-  <!-- Data Table -->
+  <!-- Existing Tables -->
   <table>
     <caption>The Productivity of Countries for Aviation Safety Studies</caption>
     <thead>
@@ -147,239 +186,81 @@
   </table>
 
   <table>
-  <caption>Comparison of Bibliometric Analysis Tools</caption>
-  <thead>
-    <tr>
-      <th>Tool</th>
-      <th>Advantages</th>
-      <th>Limitations</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>VOSviewer</td>
-      <td>
-        Excellent visualization capabilities for bibliometric networks<br>
-        User-friendly interface<br>
-        Free and open-source
-      </td>
-      <td>
-        Limited advanced statistical analysis features<br>
-        Issues with large datasets may require preprocessing
-      </td>
-    </tr>
-    <tr>
-      <td>CiteSpace</td>
-      <td>
-        Versatile with many functions for trend analysis<br>
-        Strong in temporal analysis (e.g., research fronts, burst detection)<br>
-        Free
-      </td>
-      <td>
-        Steep learning curve; not beginner-friendly<br>
-        Java dependency can complicate installation
-      </td>
-    </tr>
-    <tr>
-      <td>SciMAT</td>
-      <td>
-        Great for longitudinal analysis of scientific topics<br>
-        Strong science mapping tools<br>
-        Free
-      </td>
-      <td>
-        Complex interface, challenging for beginners<br>
-        Limited export formats for data and visualizations
-      </td>
-    </tr>
-    <tr>
-      <td>BibExcel</td>
-      <td>
-        Highly flexible, customizable analysis<br>
-        Efficient at processing large datasets<br>
-        Free
-      </td>
-      <td>
-        Lacks built-in visualization tools<br>
-        Steep learning curve with minimal guidance available
-      </td>
-    </tr>
-    <tr>
-      <td>Publish or Perish</td>
-      <td>
-        Excellent for citation analysis using Google Scholar<br>
-        Simple and user-friendly<br>
-        Free
-      </td>
-      <td>
-        Data may be less accurate due to reliance on Google Scholar<br>
-        Lacks advanced features found in other tools
-      </td>
-    </tr>
-    <tr>
-      <td>HistCite</td>
-      <td>
-        Strong in visualizing citation histories and relationships<br>
-        Simple and user-friendly<br>
-        Free
-      </td>
-      <td>
-        Development is discontinued; may not work with new datasets<br>
-        Mainly works with Web of Science data, limiting application
-      </td>
-    </tr>
-    <tr>
-      <td>Biblioshiny (R Package)</td>
-      <td>
-        Comprehensive analysis features<br>
-        Integration with R allows advanced statistical analysis<br>
-        Free and open-source
-      </td>
-      <td>
-        Requires familiarity with R, which may be a barrier<br>
-        Visualization capabilities less robust than those of VOSviewer
-      </td>
-    </tr>
-    <tr>
-      <td>Sci2 Tool</td>
-      <td>
-        Excellent for comprehensive scholarly data analysis<br>
-        Strong support for temporal, geospatial, topical, and network analysis<br>
-        Free
-      </td>
-      <td>
-        Difficult for beginners due to steep learning curve<br>
-        Interface needs updates compared to other tools
-      </td>
-    </tr>
-    <tr>
-      <td>CitNetExplorer</td>
-      <td>
-        Specializes in citation network analysis<br>
-        Allows interactive exploration of citation networks
-      </td>
-      <td>
-        Primarily focused on citation networks, lacking broader functionalities<br>
-        Requires time to master, especially for users new to network analysis
-      </td>
-    </tr>
-    <tr>
-      <td>BiblioMaps</td>
-      <td>
-        Strong mapping capabilities, particularly geographic distributions<br>
-        Allows for custom configurations
-      </td>
-      <td>
-        Niche tool with a narrower focus<br>
-        Limited community support and resources for troubleshooting
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <caption>Comparison of Bibliometric Analysis Tools</caption>
+    <thead>
+      <tr>
+        <th>Tool</th><th>Advantages</th><th>Limitations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>VOSviewer</td><td>Excellent visualization, easy to use</td><td>Limited advanced statistics</td></tr>
+      <tr><td>CiteSpace</td><td>Strong temporal and trend analysis</td><td>Steep learning curve</td></tr>
+      <tr><td>SciMAT</td><td>Longitudinal topic tracking</td><td>Complex interface</td></tr>
+      <tr><td>Publish or Perish</td><td>Easy citation analysis</td><td>Less accurate data</td></tr>
+    </tbody>
+  </table>
 
-  <!-- PIE CHART -->
+  <!-- Charts -->
   <div id="chart_div"></div>
-  
-  
-  <div id="line_chart_div" style="width: 900px; height: 500px; margin: 30px auto;"></div>
+  <div id="line_chart_div"></div>
 
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-  google.charts.load('current', { packages: ['corechart'] });
-  google.charts.setOnLoadCallback(drawAllCharts);
+  <!-- Inserted Image -->
+  <figure>
+    <img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs44196-024-00671-w/MediaObjects/44196_2024_671_Fig5_HTML.png" 
+         alt="Annual scientific production figure" width="800">
+    <figcaption style="text-align:center;">Figure from Springer (2024): Annual production trends in aviation safety research</figcaption>
+  </figure>
 
-  function drawAllCharts() {
-    drawPieChart();
-    drawLineChart();
-  }
-
-  function drawPieChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Category', 'Number of Studies'],
-      ['Artificial Intelligence (AI)', 66],
-      ['Machine Learning (ML)', 95],
-      ['Deep Learning (DL)', 23],
-      ['Other Methods', 40]
-    ]);
-
-    var options = {
-      title: 'Distribution of AI Techniques in Aviation Research',
-      is3D: true
-    };
-
-    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
-  }
-
-  function drawLineChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Year', 'Articles'],
-      ['2004', 1],
-      ['2005', 0],
-      ['2006', 1],
-      ['2007', 0],
-      ['2008', 0],
-      ['2009', 1],
-      ['2010', 2],
-      ['2011', 2],
-      ['2012', 1],
-      ['2013', 1],
-      ['2014', 0],
-      ['2015', 3],
-      ['2016', 7],
-      ['2017', 4],
-      ['2018', 6],
-      ['2019', 15],
-      ['2020', 13],
-      ['2021', 32],
-      ['2022', 58],
-      ['2023', 68],
-      ['2024 (Jan)', 8]
-    ]);
-
-    var options = {
-      title: 'Annual Scientific Production in Aviation Safety Research',
-      curveType: 'function',
-      legend: { position: 'bottom' },
-      hAxis: { title: 'Year' },
-      vAxis: { title: 'Number of Articles' }
-    };
-
-    var chart = new google.visualization.LineChart(document.getElementById('line_chart_div'));
-    chart.draw(data, options);
-  }
-</script>
-
-
-  <!-- INTRODUCTION -->
+  <!-- Content Sections -->
   <h3 id="Introduction">Introduction</h3>
-  <p id="Introduction_InText">
-    The aviation industry faces a growing problem: climate change is happening and companies need to adapt. 
-    As more people fly, the number of planes in the sky increases, heightening the risk of accidents. 
-    By incorporating AI into this vast industry, companies can analyse massive amounts of data, 
-    detect patterns faster than humans, and support smarter decision-making. Beyond safety, 
-    AI also has the potential to reduce fuel consumption and emissions, saving airlines millions while 
-    contributing to sustainability. In this essay, I will discuss how AI is transforming our skies 
-    by making them greener and safer (Kabashkin, Mišņevs and Zervina, 2023; Demir, Moslem and Duleba, 2024).
+  <p>
+    Artificial Intelligence (AI) is revolutionizing aviation by enhancing decision-making, optimizing flight operations, and improving safety standards. 
+    With climate change and increasing global air traffic, AI technologies enable predictive analytics, maintenance forecasting, and real-time data processing to support sustainable and safer skies.
   </p>
 
-  <!-- ANALYSIS -->
   <h3 id="Paragraph1">The Current Landscape of Aviation Decision-Making</h3>
-  <p id="Analysis_InText">
-    The aviation sector currently relies heavily on human decision-making, supported by automated systems. 
-    Pilots and air traffic controllers make rapid judgments based on complex data inputs, 
-    often under time pressure. However, traditional systems are limited by human attention and 
-    cognitive capacity. AI introduces adaptive learning models that continuously assess flight paths, 
-    weather patterns, and maintenance needs. Airlines are increasingly adopting predictive maintenance 
-    algorithms that can forecast engine or part failures before they happen, minimizing downtime and 
-    improving safety.
+  <p>
+    Aviation decision-making traditionally depends on human judgment combined with automated systems. 
+    However, these systems have limitations in handling large datasets or rapidly evolving scenarios. 
+    AI provides adaptive learning systems that analyze flight data, weather, and maintenance reports to assist pilots and controllers in real time.
   </p>
 
-  <!-- LAST UPDATED + VERIFY BUTTON -->
+  <h3 id="Paragraph2">AI in Action: Real-World Applications in Aviation</h3>
+  <p>
+    AI applications are increasingly used in aircraft maintenance (predictive maintenance), air traffic management, and flight scheduling. 
+    For example, machine learning models predict component wear and tear, reducing mechanical failures and saving costs. 
+    Deep learning also aids in anomaly detection during flight, improving early warning systems.
+  </p>
+
+  <h3 id="Paragraph3">Enhancing Safety and Sustainability</h3>
+  <p>
+    AI enhances flight safety through predictive safety management systems that analyze thousands of flight hours for potential risks. 
+    Sustainability benefits arise through optimized flight routes and reduced fuel burn, cutting both operational costs and carbon emissions.
+  </p>
+
+  <h3 id="Paragraph4">Challenges and the Future</h3>
+  <p>
+    Despite progress, AI adoption faces challenges such as data privacy, cybersecurity, algorithm bias, and certification hurdles. 
+    The future will require robust frameworks to integrate AI safely while maintaining human oversight in aviation decision-making.
+  </p>
+
+  <h3 id="Conclusion">Conclusion</h3>
+  <p>
+    The integration of AI in aviation signifies a new era of safety and sustainability. 
+    As the technology matures, it will become indispensable in supporting pilots, improving environmental performance, and reshaping the future of air travel.
+  </p>
+
+  <h3 id="References">References</h3>
+  <p>
+    Kabashkin, I., Mišņevs, I., & Zervina, T. (2023). Applications of Artificial Intelligence in Aviation. *Journal of Air Transport Management*.<br>
+    Demir, M., Moslem, S., & Duleba, S. (2024). The impact of machine learning on aviation safety. *Transportation Safety Review*.<br>
+    Springer (2024). <a href="https://link.springer.com/article/10.1007/s44196-024-00671-w" target="_blank">AI-driven analysis of aviation safety trends</a>.
+  </p>
+
+  <!-- GitHub API + Word Count Script -->
   <div id="last-updated">Loading last update time...</div>
   <button onclick="verifyLastUpdatedTime()">Verify Last Modified Time</button>
 
-  <!-- GitHub API Script -->
   <script>
     async function getLastUpdatedTime() {
       const username = 'M1gou';
@@ -387,57 +268,41 @@
       const url = `https://api.github.com/repos/${username}/${repo}/commits`;
 
       try {
-        const response = await fetch(url, {
-          headers: { 'Accept': 'application/vnd.github.v3+json' }
-        });
-
-        if (!response.ok) throw new Error(`Error fetching data: ${response.status} ${response.statusText}`);
-
+        const response = await fetch(url);
         const commits = await response.json();
-        const latestCommit = commits[0];
-        const lastCommitDate = new Date(latestCommit.commit.committer.date);
-
+        const latest = commits[0].commit.committer.date;
         document.getElementById('last-updated').innerText =
-          `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
-      } catch (error) {
-        document.getElementById('last-updated').innerText =
-          'Error fetching update time. Please check the repository details.';
+          'Last Modified Time: ' + new Date(latest).toLocaleString();
+      } catch (e) {
+        document.getElementById('last-updated').innerText = 'Error fetching update time.';
       }
     }
 
     async function verifyLastUpdatedTime() {
       document.getElementById('last-updated').innerText = 'Verifying...';
       await getLastUpdatedTime();
-      alert('Last modified time has been successfully verified from GitHub API.');
+      alert('Last modified time verified from GitHub API.');
     }
 
-    window.onload = getLastUpdatedTime;
-  </script>
-
-  <!-- WORD COUNT SCRIPT -->
-  <p id="totalWordcount"></p>
-  <script>
-    function displayWordCount(sectionId) {
-      const text = document.getElementById(sectionId).textContent;
-      const wordArray = text.trim().split(/\s+/);
-      return wordArray.length;
+    function displayWordCount(id) {
+      const text = document.getElementById(id)?.textContent || '';
+      return text.trim().split(/\s+/).length;
     }
 
     function displayTotalWordcount() {
-      const introCount = displayWordCount("Introduction_InText");
-      const analysisCount = displayWordCount("Analysis_InText");
-      const total = introCount + analysisCount;
-
-      document.getElementById("totalWordcount").innerText =
-        "Total word count: " + total;
+      const ids = ['Introduction', 'Paragraph1', 'Paragraph2', 'Paragraph3', 'Paragraph4', 'Conclusion'];
+      const total = ids.reduce((sum, id) => sum + displayWordCount(id), 0);
+      document.getElementById('totalWordcount').innerText = 'Total word count: ' + total;
     }
 
-    // Delay execution slightly so elements load first
-    window.addEventListener('load', () => {
+    window.onload = function() {
       getLastUpdatedTime();
       displayTotalWordcount();
-    });
+    };
   </script>
+
+  <p id="totalWordcount"></p>
+
 </body>
 </html>
 
