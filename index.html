@@ -204,12 +204,12 @@
 </body>
 
 <head>
-  <title>My Daily Activities</title>
+  <title>FIND TITLE FOR PIE CHART</title>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
  
 <body>
-  <div id="chart_div" style="width: 600px; height: 400px;"></div>
+  <div id="chart_div" style="width: 900px; height: 600px;"></div>
 
   <script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
@@ -217,12 +217,11 @@
 
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['Work', 8],
-        ['Sleep', 8],
-        ['Eat', 2],
-        ['Study', 4],
-        ['Exercise', 2]
+        ['Task', 'My Daily Tasks'],
+        ['AI', 66],
+        ['ML', 95],
+        ['DL', 23],
+        ['Other Methods', 40]
       ]);
 
       var options = {
