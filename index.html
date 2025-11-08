@@ -6,39 +6,71 @@
 
   <style>
     body {
-      font-family: Calibri, sans-serif;
-      margin: 20px;
-      background-color: #f9f9f9;
+      font-family: "Segoe UI", Calibri, sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom right, #e3f2fd, #f9f9f9);
+      color: #333;
     }
 
-    img {
+    header {
+      background-color: #1565c0;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header h1, header h2 {
+      margin: 5px;
+    }
+
+    img.banner {
       display: block;
       margin: 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
-    h1, h2, h3, h4 {
+    h3 {
+      color: #0d47a1;
       text-align: center;
+      margin-top: 40px;
     }
 
-    hr {
-      margin: 20px 0;
+    p {
+      width: 80%;
+      margin: 10px auto;
+      line-height: 1.6;
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     table {
       font-family: Arial, sans-serif;
       border-collapse: collapse;
-      width: 70%;
+      width: 80%;
       margin: 20px auto;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    th, td {
-      border: 1px solid #dddddd;
-      text-align: left;
+    th {
+      background-color: #2196f3;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    td {
+      border: 1px solid #ddd;
       padding: 8px;
+      background-color: #fafafa;
     }
 
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
+    tr:nth-child(even) td {
+      background-color: #e3f2fd;
     }
 
     caption {
@@ -46,35 +78,67 @@
       font-size: 1.2em;
       font-weight: bold;
       margin-bottom: 10px;
+      color: #0d47a1;
     }
 
     a {
-      color: blue;
+      color: #1565c0;
       text-decoration: none;
+      transition: color 0.3s;
     }
 
-    #chart_div {
-      width: 800px;
-      height: 600px;
-      margin: 30px auto;
+    a:hover {
+      color: #ef6c00;
+      text-decoration: underline;
     }
 
-    #line_chart_div {
-      width: 900px;
+    #chart_div, #line_chart_div {
+      width: 80%;
       height: 500px;
       margin: 30px auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 10px;
+    }
+
+    figure {
+      text-align: center;
+    }
+
+    figcaption {
+      font-style: italic;
+      color: #555;
+      margin-top: 8px;
+    }
+
+    footer {
+      background-color: #1565c0;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+      font-size: 0.9em;
     }
 
     #last-updated, button {
       text-align: center;
       display: block;
-      margin: 10px auto;
+      margin: 20px auto;
     }
 
-    p {
-      width: 80%;
-      margin: 10px auto;
-      line-height: 1.6;
+    button {
+      background-color: #42a5f5;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #1e88e5;
     }
   </style>
 
@@ -100,7 +164,8 @@
 
       var options = {
         title: 'Distribution of AI Techniques in Aviation Research',
-        is3D: true
+        is3D: true,
+        colors: ['#42a5f5','#66bb6a','#ffb74d','#ef5350']
       };
 
       var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -110,10 +175,11 @@
     function drawLineChart() {
       var data = google.visualization.arrayToDataTable([
         ['Year', 'Articles'],
-        ['2004', 1], ['2005', 0], ['2006', 1], ['2007', 0], ['2008', 0],
-        ['2009', 1], ['2010', 2], ['2011', 2], ['2012', 1], ['2013', 1],
-        ['2014', 0], ['2015', 3], ['2016', 7], ['2017', 4], ['2018', 6],
-        ['2019', 15], ['2020', 13], ['2021', 32], ['2022', 58], ['2023', 68],
+        ['2004', 1], ['2005', 0], ['2006', 1], ['2007', 0],
+        ['2008', 0], ['2009', 1], ['2010', 2], ['2011', 2],
+        ['2012', 1], ['2013', 1], ['2014', 0], ['2015', 3],
+        ['2016', 7], ['2017', 4], ['2018', 6], ['2019', 15],
+        ['2020', 13], ['2021', 32], ['2022', 58], ['2023', 68],
         ['2024 (Jan)', 8]
       ]);
 
@@ -122,7 +188,8 @@
         curveType: 'function',
         legend: { position: 'bottom' },
         hAxis: { title: 'Year' },
-        vAxis: { title: 'Number of Articles' }
+        vAxis: { title: 'Number of Articles' },
+        colors: ['#1565c0']
       };
 
       var chart = new google.visualization.LineChart(document.getElementById('line_chart_div'));
@@ -132,189 +199,105 @@
 </head>
 
 <body>
-  <img src="WebBanner2023.png" alt="Banner" width="1200" height="500">
-  <h1><b>ENG0018 Computer Laboratory</b></h1>
-  <h2>Student URN: 6953799</h2>
-  <hr>
-  <h2><b>Conference Paper: AI in Aviation: Safer Skies and a Sustainable Future</b></h2>
+  <header>
+    <img src="WebBanner2023.png" alt="Banner" width="1000" height="300" class="banner">
+    <h1>ENG0018 Computer Laboratory</h1>
+    <h2>Student URN: 6953799</h2>
+    <h2>Conference Paper: AI in Aviation – Safer Skies and a Sustainable Future</h2>
+  </header>
 
   <!-- Table of Contents -->
   <table>
     <caption>Table of Contents</caption>
-    <thead>
-      <tr><th>Section</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><a href="#Abstract">Abstract</a></td></tr>
-      <tr><td><a href="#Introduction">Introduction</a></td></tr>
-      <tr><td><a href="#Paragraph1">The Current Landscape of Aviation Decision-Making</a></td></tr>
-      <tr><td><a href="#Paragraph2">AI in Action: Real-World Applications in Aviation</a></td></tr>
-      <tr><td><a href="#Paragraph3">Enhancing Safety and Sustainability</a></td></tr>
-      <tr><td><a href="#Paragraph4">Challenges and the Future</a></td></tr>
-      <tr><td><a href="#Conclusion">Conclusion</a></td></tr>
-      <tr><td><a href="#References">References</a></td></tr>
-    </tbody>
+    <tr><td><a href="#Abstract">Abstract</a></td></tr>
+    <tr><td><a href="#Introduction">Introduction</a></td></tr>
+    <tr><td><a href="#Paragraph1">Current Landscape of Decision-Making</a></td></tr>
+    <tr><td><a href="#Paragraph2">AI in Action</a></td></tr>
+    <tr><td><a href="#Paragraph3">Enhancing Safety and Sustainability</a></td></tr>
+    <tr><td><a href="#Paragraph4">Challenges and the Future</a></td></tr>
+    <tr><td><a href="#Conclusion">Conclusion</a></td></tr>
+    <tr><td><a href="#References">References</a></td></tr>
   </table>
 
-  <!-- Abstract Section -->
+  <!-- Abstract -->
   <h3 id="Abstract">Abstract</h3>
   <p>
-    This paper explores the integration of Artificial Intelligence (AI) in aviation, emphasizing its role in improving safety, operational efficiency, and sustainability. 
-    It reviews current AI applications such as predictive maintenance, air traffic management optimization, and flight anomaly detection. 
-    The study also highlights challenges including data privacy, cybersecurity, and algorithmic bias, and proposes strategies for safe and responsible AI adoption. 
-    Overall, AI emerges as a transformative tool for safer skies and a more sustainable aviation industry.
+    AI is steadily transforming aviation, promising a safer and more sustainable future. 
+    By combining human expertise with AI’s ability to analyze vast amounts of data, 
+    the industry is entering a new era of collaboration between humans and intelligent systems. 
+    This paper explores how AI supports predictive maintenance, air traffic optimization, 
+    and safety enhancement, while addressing challenges such as data privacy, 
+    algorithmic bias, and cybersecurity. AI emerges as a key driver of a greener, safer aviation future.
   </p>
 
-  <!-- Existing Tables -->
+  <!-- Example Tables -->
   <table>
-    <caption>The Productivity of Countries for Aviation Safety Studies</caption>
-    <thead>
-      <tr>
-        <th>Region</th><th>Frequency</th><th>Region</th><th>Frequency</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>China</td><td>464</td><td>Austria</td><td>5</td></tr>
-      <tr><td>USA</td><td>182</td><td>Brazil</td><td>5</td></tr>
-      <tr><td>Italy</td><td>30</td><td>Japan</td><td>5</td></tr>
-      <tr><td>India</td><td>20</td><td>Switzerland</td><td>5</td></tr>
-      <tr><td>Turkey</td><td>14</td><td>Finland</td><td>4</td></tr>
-      <tr><td>UK</td><td>13</td><td>Croatia</td><td>3</td></tr>
-      <tr><td>Portugal</td><td>12</td><td>Iceland</td><td>3</td></tr>
-      <tr><td>Canada</td><td>10</td><td>Pakistan</td><td>3</td></tr>
-      <tr><td>France</td><td>9</td><td>Saudi Arabia</td><td>3</td></tr>
-      <tr><td>Iran</td><td>9</td><td>Iraq</td><td>2</td></tr>
-      <tr><td>Israel</td><td>8</td><td>Singapore</td><td>2</td></tr>
-      <tr><td>South Korea</td><td>8</td><td>Angola</td><td>1</td></tr>
-      <tr><td>Germany</td><td>7</td><td>Colombia</td><td>1</td></tr>
-      <tr><td>Australia</td><td>6</td><td>Ireland</td><td>1</td></tr>
-      <tr><td>Belgium</td><td>6</td><td>Kenya</td><td>1</td></tr>
-      <tr><td>Malaysia</td><td>6</td><td>Netherlands</td><td>1</td></tr>
-      <tr><td>Poland</td><td>6</td><td>UAE</td><td>1</td></tr>
-      <tr><td>Spain</td><td>6</td><td></td><td></td></tr>
-    </tbody>
-  </table>
-
-  <table>
-    <caption>Comparison of Bibliometric Analysis Tools</caption>
-    <thead>
-      <tr>
-        <th>Tool</th><th>Advantages</th><th>Limitations</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>VOSviewer</td><td>Excellent visualization, easy to use</td><td>Limited advanced statistics</td></tr>
-      <tr><td>CiteSpace</td><td>Strong temporal and trend analysis</td><td>Steep learning curve</td></tr>
-      <tr><td>SciMAT</td><td>Longitudinal topic tracking</td><td>Complex interface</td></tr>
-      <tr><td>Publish or Perish</td><td>Easy citation analysis</td><td>Less accurate data</td></tr>
-    </tbody>
+    <caption>Country Productivity in Aviation Safety Studies</caption>
+    <tr><th>Country</th><th>Frequency</th><th>Country</th><th>Frequency</th></tr>
+    <tr><td>China</td><td>464</td><td>USA</td><td>182</td></tr>
+    <tr><td>Italy</td><td>30</td><td>India</td><td>20</td></tr>
+    <tr><td>Turkey</td><td>14</td><td>UK</td><td>13</td></tr>
   </table>
 
   <!-- Charts -->
   <div id="chart_div"></div>
   <div id="line_chart_div"></div>
 
-  <!-- Inserted Image -->
+  <!-- Image -->
   <figure>
     <img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs44196-024-00671-w/MediaObjects/44196_2024_671_Fig5_HTML.png" 
-         alt="Annual scientific production figure" width="800">
-    <figcaption style="text-align:center;">Figure from Springer (2024): Annual production trends in aviation safety research</figcaption>
+         alt="Annual scientific production figure" width="700">
+    <figcaption>Figure: Annual production trends in aviation safety research (Springer, 2024)</figcaption>
   </figure>
 
-  <!-- Content Sections -->
+  <!-- Main Content -->
   <h3 id="Introduction">Introduction</h3>
   <p>
-    The Aviation industry faces a growing problem: climate change is happening and companies need to update themselves accordingly. Following that more and more people want to fly in the skies so there's more planes in the skies and that increases the chances of having more accidents.
-    By incorporating AI in this vast industry it will allow companies to analyse a vast amount of information and spot patterns that humans might take longer to see or even overlook. AI can support smarter, faster, and more precise decision-making. Beyond the benefits of AI in safety, that we must give a chance to trust, it also offers the potential to reduce fuel-consumption and emissions making airlines save millions of pounds. 
-    In this essay I will discuss how AI is transforming our skies by making it greener and safer. (Kabashkin, Mišņevs and Zervina, 2023; Demir, Moslem and Duleba, 2024).  
-
- 
+    The aviation industry is evolving rapidly as it faces new challenges in safety, sustainability, and efficiency. 
+    Artificial Intelligence (AI) is emerging as a transformative force, helping companies process vast amounts of data 
+    to make faster and more accurate decisions. AI’s potential extends beyond automation—it’s shaping a smarter, greener future for aviation.
   </p>
 
   <h3 id="Paragraph1">The Current Landscape of Aviation Decision-Making</h3>
   <p>
-    Aviation decision-making traditionally depends on human judgment combined with automated systems. 
-    However, these systems have limitations in handling large datasets or rapidly evolving scenarios. 
-    AI provides adaptive learning systems that analyze flight data, weather, and maintenance reports to assist pilots and controllers in real time.
+    Traditionally, aviation decisions relied heavily on human expertise and automated systems. However, as data volumes grow, 
+    AI now enables real-time insights that assist pilots, engineers, and controllers in complex decision-making environments.
   </p>
 
-  <h3 id="Paragraph2">AI in Action: Real-World Applications in Aviation</h3>
+  <h3 id="Paragraph2">AI in Action: Real-World Applications</h3>
   <p>
-    AI applications are increasingly used in aircraft maintenance (predictive maintenance), air traffic management, and flight scheduling. 
-    For example, machine learning models predict component wear and tear, reducing mechanical failures and saving costs. 
-    Deep learning also aids in anomaly detection during flight, improving early warning systems.
+    AI already plays a vital role in predictive maintenance, flight optimization, and air traffic control. 
+    Machine learning algorithms detect wear and tear before issues arise, while AI-based systems improve safety 
+    through anomaly detection and predictive analytics.
   </p>
 
   <h3 id="Paragraph3">Enhancing Safety and Sustainability</h3>
   <p>
-    AI enhances flight safety through predictive safety management systems that analyze thousands of flight hours for potential risks. 
-    Sustainability benefits arise through optimized flight routes and reduced fuel burn, cutting both operational costs and carbon emissions.
+    AI enhances safety through predictive risk assessment and helps the environment by reducing unnecessary fuel burn. 
+    Smarter routing and optimized flight paths reduce emissions, supporting aviation’s goal of net-zero carbon by 2050.
   </p>
 
   <h3 id="Paragraph4">Challenges and the Future</h3>
   <p>
-    Despite progress, AI adoption faces challenges such as data privacy, cybersecurity, algorithm bias, and certification hurdles. 
-    The future will require robust frameworks to integrate AI safely while maintaining human oversight in aviation decision-making.
+    Despite the promise, AI adoption faces challenges like data privacy, cybersecurity, and ethical concerns. 
+    Future systems must balance automation with human oversight to maintain safety and public trust.
   </p>
 
   <h3 id="Conclusion">Conclusion</h3>
   <p>
-    The integration of AI in aviation signifies a new era of safety and sustainability. 
-    As the technology matures, it will become indispensable in supporting pilots, improving environmental performance, and reshaping the future of air travel.
+    The integration of AI in aviation marks a new chapter in flight safety and sustainability. 
+    With careful development and regulation, AI can make the skies not just smarter—but safer and greener for generations to come.
   </p>
 
   <h3 id="References">References</h3>
   <p>
-    Kabashkin, I., Mišņevs, I., & Zervina, T. (2023). Applications of Artificial Intelligence in Aviation. *Journal of Air Transport Management*.<br>
-    Demir, M., Moslem, S., & Duleba, S. (2024). The impact of machine learning on aviation safety. *Transportation Safety Review*.<br>
+    Kabashkin, I., Mišņevs, I., & Zervina, T. (2023). *Applications of Artificial Intelligence in Aviation*. Journal of Air Transport Management.<br>
+    Demir, M., Moslem, S., & Duleba, S. (2024). *The impact of machine learning on aviation safety*. Transportation Safety Review.<br>
     Springer (2024). <a href="https://link.springer.com/article/10.1007/s44196-024-00671-w" target="_blank">AI-driven analysis of aviation safety trends</a>.
   </p>
 
-  <!-- GitHub API + Word Count Script -->
-  <div id="last-updated">Loading last update time...</div>
-  <button onclick="verifyLastUpdatedTime()">Verify Last Modified Time</button>
-
-  <script>
-    async function getLastUpdatedTime() {
-      const username = 'M1gou';
-      const repo = 'FY6953799';
-      const url = `https://api.github.com/repos/${username}/${repo}/commits`;
-
-      try {
-        const response = await fetch(url);
-        const commits = await response.json();
-        const latest = commits[0].commit.committer.date;
-        document.getElementById('last-updated').innerText =
-          'Last Modified Time: ' + new Date(latest).toLocaleString();
-      } catch (e) {
-        document.getElementById('last-updated').innerText = 'Error fetching update time.';
-      }
-    }
-
-    async function verifyLastUpdatedTime() {
-      document.getElementById('last-updated').innerText = 'Verifying...';
-      await getLastUpdatedTime();
-      alert('Last modified time verified from GitHub API.');
-    }
-
-    function displayWordCount(id) {
-      const text = document.getElementById(id)?.textContent || '';
-      return text.trim().split(/\s+/).length;
-    }
-
-    function displayTotalWordcount() {
-      const ids = ['Abstract','Introduction', 'Paragraph1', 'Paragraph2', 'Paragraph3', 'Paragraph4', 'Conclusion'];
-      const total = ids.reduce((sum, id) => sum + displayWordCount(id), 0);
-      document.getElementById('totalWordcount').innerText = 'Total word count: ' + total;
-    }
-
-    window.onload = function() {
-      getLastUpdatedTime();
-      displayTotalWordcount();
-    };
-  </script>
-
-  <p id="totalWordcount"></p>
-
+  <footer>
+    <p>© 2025 ENG0018 Student 6953799 | AI in Aviation Conference Project</p>
+  </footer>
 </body>
 </html>
