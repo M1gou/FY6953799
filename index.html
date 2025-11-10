@@ -366,31 +366,50 @@ As AI would be able to improve fuel consumption, systems could predict the exact
 <!-- Placeholder for total word count -->
 <p id="totalWordCount"></p>
 <hr>
-<script>
+
+  <script>
   // Function to calculate and display word count for a specified section
-  function displayWordCount(sectionId, outputId) {
-    // Get the text content from the specified section
-    const text = document.getElementById(sectionId).textContent;
-    // Split text into words based on spaces and filter out any empty strings
-    const wordArray = text.trim().split(/\s+/);
-    // Count the words
-    const wordCount = wordArray.length;
-    // Return the word count for summing purposes
-    return wordCount;
+  function displayWordCount(sectionId) {
+    const element = document.getElementById(sectionId);
+    if (!element) return 0; // In case an ID doesn’t exist
+    const text = element.textContent.trim();
+    const wordArray = text.split(/\s+/).filter(word => word.length > 0);
+    return wordArray.length;
   }
+
   // Function to calculate and display total word count from selected sections
   function displayTotalWordCount() {
-    // Calculate word count for each section and accumulate the total
+    // Calculate word count for each section
+    const AbstractCount = displayWordCount("Abstract_InText");
     const IntroductionCount = displayWordCount("Introduction_InText");
     const AnalysisCount = displayWordCount("Analysis_InText");
+    const Paragraph1Count = displayWordCount("Paragraph1_InText");
+    const Paragraph2Count = displayWordCount("Paragraph2_InText");
+    const Paragraph3Count = displayWordCount("Paragraph3_InText");
+    const Paragraph4Count = displayWordCount("Paragraph4_InText");
+    const ConclusionCount = displayWordCount("Conclusion_InText");
+    const ReferencesCount = displayWordCount("References_InText");
+
     // Calculate the sum of all selected sections
-    const totalWordCount = IntroductionCount + AnalysisCount;
+    const totalWordCount =
+      AbstractCount +
+      IntroductionCount +
+      AnalysisCount +
+      Paragraph1Count +
+      Paragraph2Count +
+      Paragraph3Count +
+      Paragraph4Count +
+      ConclusionCount +
+      ReferencesCount;
+
     // Display the total word count
     document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
+
   // Run the function for specific sections and display total count when the page loads
   window.onload = displayTotalWordCount;
 </script>
+  
 
   <footer>
     <p>© 2025 ENG0018 Student 6953799 | AI in Aviation Conference Project</p>
