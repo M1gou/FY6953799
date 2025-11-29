@@ -23,22 +23,13 @@
       margin: 5px;
     }
 
- img.banner {
-  width: 100%;        /* fills the entire banner-box */
-  height: auto;       /* keeps correct aspect ratio */
-  display: block;
-  border-radius: 10px;
+img.banner { 
+  
+  display: block; 
+  margin: 0 auto; 
+  border-radius: 10px; 
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
     
-    .banner-box {
-  width: 90%;
-  margin: 20px auto;
-  padding: 40px;             
-  background: white;             
-  border-radius: 12px;           
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
 
     h3 {
       color: #0d47a1;
@@ -141,70 +132,15 @@
     }
   </style>
 
-  <!-- Google Charts -->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
-    google.charts.load('current', { packages: ['corechart'] });
-    google.charts.setOnLoadCallback(drawAllCharts);
-
-    function drawAllCharts() {
-      drawPieChart();
-      drawLineChart();
-    }
-
-    function drawPieChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Category', 'Number of Studies'],
-        ['Artificial Intelligence (AI)', 66],
-        ['Machine Learning (ML)', 95],
-        ['Deep Learning (DL)', 23],
-        ['Other Methods', 40]
-      ]);
-
-      var options = {
-        title: 'Distribution of AI Techniques in Aviation Research',
-        is3D: true,
-        colors: ['#42a5f5','#66bb6a','#ffb74d','#ef5350']
-      };
-
-      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
-    }
-
-    function drawLineChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Year', 'Articles'],
-        ['2004', 1], ['2005', 0], ['2006', 1], ['2007', 0],
-        ['2008', 0], ['2009', 1], ['2010', 2], ['2011', 2],
-        ['2012', 1], ['2013', 1], ['2014', 0], ['2015', 3],
-        ['2016', 7], ['2017', 4], ['2018', 6], ['2019', 15],
-        ['2020', 13], ['2021', 32], ['2022', 58], ['2023', 68],
-        ['2024 (Jan)', 8]
-      ]);
-
-      var options = {
-        title: 'Annual Scientific Production in Aviation Safety Research',
-        curveType: 'function',
-        legend: { position: 'bottom' },
-        hAxis: { title: 'Year' },
-        vAxis: { title: 'Number of Articles' },
-        colors: ['#1565c0']
-      };
-
-      var chart = new google.visualization.LineChart(document.getElementById('line_chart_div'));
-      chart.draw(data, options);
-    }
   </script>
 </head>
 
 <body>
   <header>
-    <div class="banner-box">
-    <img src="WebBanner2023.png" alt="Banner" class="banner">
+    <img src="WebBanner2023.png" alt="Banner" width="1300" height="400" class="banner">
     <h1>AI in Aviation: Safer Skies and a Sustainable Future</h1>
     <h2>ENG0018 Computer Laboratory</h2>
     <h2>Student URN: 6953799</h2>
-    </div>
   </header>
 
   <!-- Table of Contents -->
